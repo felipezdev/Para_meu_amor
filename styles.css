@@ -26,7 +26,10 @@
   box-sizing: border-box;
 }
 
-html,
+img,
+svg,
+video {
+  max-widthtml,
 body {
   margin: 0;
   padding: 0;
@@ -1139,5 +1142,3 @@ h1 {
 
   .lede {
     font-size: 14px;
-  }
-}
