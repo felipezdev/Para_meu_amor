@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saudade FM</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%23f1a6b6' d='M32 56s-19.5-11.8-25.8-24C2.6 24.2 7.4 10 20.9 10c6.3 0 10.4 3.4 11.1 7.1C32.7 13.4 36.8 10 43.1 10 56.6 10 61.4 24.2 57.8 32 51.5 44.2 32 56 32 56z'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Space+Mono:wght@400;700&family=Inter:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+  <audio id="backgroundMusic" src="música/fundo.mp3" loop preload="auto"></audio>
+  <div class="heart-field" aria-hidden="true">
+    <span class="heart heart--one">♥</span>
+    <span class="heart heart--two">♥</span>
+    <span class="heart heart--three">♥</span>
+    <span class="heart heart--four">♥</span>
+    <span class="heart heart--five">♥</span>
+    <span class="heart heart--six">♥</span>
+    <span class="heart heart--seven">♥</span>
+    <span class="heart heart--eight">♥</span>
+  </div>
+
+  <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+
+  <section class="intro-session" id="introSession" aria-label="Sessão inicial">
+    <div class="intro-card">
+      
+      <h2>um pedaço nosso antes da frequência</h2>
+      <p class="intro-copy">
+        eu vou te mandar um áudio aqui, e quando ele terminar, vai passar exatamente 3 segundos
+        antes da Saudade FM abrir inteira pra você.
+      </p>
+
+      <div class="intro-wave" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+      <button class="intro-btn" id="startIntroBtn" type="button">entrar na sessão</button>
+    </div>
+    <audio id="introAudio" preload="auto" playsinline></audio>
+  </section>
+
+  <div class="experience" id="experience">
+    <main class="stage">
+      <div class="microphones" aria-hidden="true">
+        <img class="microphone microphone--left" src="imagens/mic.png" alt="" />
+        <img class="microphone microphone--right" src="imagens/mic2.png" alt="" />
+        <img class="microphone microphone--extra microphone--extra-one" src="imagens/mic2.png" alt="" />
+        <img class="microphone microphone--extra microphone--extra-two" src="imagens/mic.png" alt="" />
+        <img class="microphone microphone--extra microphone--extra-three" src="imagens/mic.png" alt="" />
+        <img class="microphone microphone--extra microphone--extra-four" src="imagens/mic2.png" alt="" />
+        <img class="microphone microphone--extra microphone--extra-five" src="imagens/mic.png" alt="" />
+        <img class="microphone microphone--extra microphone--extra-six" src="imagens/mic2.png" alt="" />
+        <img class="microphone microphone--extra microphone--extra-seven" src="imagens/mic.png" alt="" />
+        <img class="microphone microphone--extra microphone--extra-eight" src="imagens/mic2.png" alt="" />
+        <img class="microphone microphone--extra microphone--extra-nine" src="imagens/mic.png" alt="" />
+      </div>
+
+      <header>
+        <p class="eyebrow">uma frequência só nossa</p>
+        <h1>Saudade FM</h1>
+        <p class="lede">Gire o dial, capte um sinal</p>
+      </header>
+
+      <section class="radio" aria-label="Sintonizador">
+        <svg class="dial" viewBox="0 0 320 58" aria-hidden="true">
+          <line x1="16" y1="34" x2="304" y2="34" class="baseline" />
+          <g id="ticks"></g>
+          <polygon id="needle" points="0,44 -6,26 6,26"></polygon>
+        </svg>
+
+        <p class="readout" id="freqReadout">88.0<span class="unit">MHz</span></p>
+        <p class="station" id="stationLabel">aguardando sintonia</p>
+        <div class="waveform" id="waveform" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </section>
+
+      <button class="tune-btn" id="tuneBtn" type="button">Sintonizar</button>
+
+      <section class="message-card" id="messageCard" aria-label="Sinal recebido">
+        <p class="onair"><span class="dot"></span><span id="onairText">no ar</span></p>
+
+        <div class="player-row">
+          <button class="play-btn" id="playBtn" type="button" aria-label="Ouvir áudio">▶</button>
+          <div
+            class="track"
+            id="trackBar"
+            role="progressbar"
+            aria-label="Progresso do áudio"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+          >
+            <div class="track-fill" id="trackFill"></div>
+          </div>
+          <span class="time-label" id="timeLabel">0:00</span>
+        </div>
+        <audio id="player" preload="none"></audio>
+        <p class="audio-note" id="audioNote" hidden>
+          áudio ainda não adicionado nesta frequência — mas o motivo continua valendo.
+        </p>
+
+        <blockquote class="message" id="messageText" aria-live="polite">
+          Aperte sintonizar pra captar o primeiro sinal.
+        </blockquote>
+      </section>
+
+      <p class="progress" id="progressText" aria-live="polite">nenhum sinal captado ainda</p>
+
+      <section class="gift-reveal" id="giftReveal" aria-label="Presente surpresa" hidden>
+        <p class="gift-kicker">você chegou até o fim</p>
+        <button class="gift-box" id="giftBox" type="button" aria-label="Abrir presente">
+          <span class="gift-aura" aria-hidden="true"></span>
+          <span class="gift-spark gift-spark--one" aria-hidden="true"></span>
+          <span class="gift-spark gift-spark--two" aria-hidden="true"></span>
+          <span class="gift-spark gift-spark--three" aria-hidden="true"></span>
+          <span class="gift-lid">
+            <span class="gift-lid-shine"></span>
+            <span class="gift-ribbon"></span>
+          </span>
+          <span class="gift-body">
+            <span class="gift-body-shine"></span>
+            <span class="gift-ribbon"></span>
+          </span>
+          <span class="gift-bow" aria-hidden="true">
+            <span class="gift-loop gift-loop--left"></span>
+            <span class="gift-loop gift-loop--right"></span>
+            <span class="gift-knot"></span>
+          </span>
+        </button>
+        <p class="gift-hint">tem uma surpresa esperando por você</p>
+      </section>
+
+      <section class="surprise-card" id="surpriseCard" aria-live="polite" hidden>
+        <p class="surprise-heart" aria-hidden="true">♥</p>
+        <p class="surprise-message">Feliz aniversário amor, espero que goste desse presentinho simples❤️!</p>
+        <p class="surprise-signature">com amor, sempre</p>
+      </section>
+
+      <section class="game-reward" id="gameReward" aria-label="Presente do jogo" hidden>
+        <div class="game-cover-wrap">
+          <img
+            class="game-cover"
+            src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1332010/header.jpg"
+            alt="Capa do jogo Stray"
+          />
+        </div>
+        <div class="game-details">
+          <p class="gift-kicker">seu próximo mundo</p>
+          <h2>Stray</h2>
+          <p>Uma aventura nova para explorar, descobrir e viver juntos.</p>
+          <div class="activation-code" aria-label="Código de ativação">
+            <span>código de ativação</span>
+            <strong>código promocional</strong>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
