@@ -338,15 +338,6 @@ body {
   animation: microphoneFloat 6.1s ease-in-out -.9s infinite;
 }
 
-.microphone--extra-nine {
-  bottom: 9vh;
-  left: 18vw;
-  --mic-rotation: -12deg;
-  --mic-rotation-end: -18deg;
-  --mic-lift: 9px;
-  animation: microphoneFloat 5.5s ease-in-out -2.8s infinite;
-}
-
 @keyframes microphoneFloat {
   0%, 100% { transform: translateY(0) rotate(var(--mic-rotation)); }
   50% { transform: translateY(calc(var(--mic-lift) * -1)) rotate(var(--mic-rotation-end)); }
