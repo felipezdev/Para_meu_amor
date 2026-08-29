@@ -29,7 +29,11 @@
 img,
 svg,
 video {
-  max-widthtml,
+  max-width: 100%;
+  height: auto;
+}
+
+html,
 body {
   margin: 0;
   padding: 0;
@@ -1142,3 +1146,4 @@ h1 {
 
   .lede {
     font-size: 14px;
+  }}
