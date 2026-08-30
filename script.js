@@ -121,9 +121,7 @@ const playerFlow = {
 
     if (dom.player.paused) {
       if (dom.player.ended) dom.player.currentTime = 0;
-      dom.player.play().catch(() => {
-        showAudioError('não foi possível reproduzir este áudio — tente novamente.');
-      });
+      dom.player.play().catch(() => {});
     } else {
       dom.player.pause();
     }
@@ -143,7 +141,6 @@ const playerFlow = {
 
   handleError() {
     if (!dom.player.getAttribute('src')) return;
-    showAudioError('áudio indisponível nesta frequência — mas o motivo continua valendo.');
   },
 };
 
@@ -193,9 +190,7 @@ const radioFlow = {
     dom.player.src = reason.audio;
     dom.player.volume = REASON_AUDIO_VOLUME;
     dom.player.load();
-    dom.player.play().catch(() => {
-      showAudioError('não foi possível reproduzir este áudio — tente apertar play novamente.');
-    });
+    dom.player.play().catch(() => {});
   },
 };
 
@@ -399,12 +394,8 @@ function resetPlayerUI() {
   setPlayIcon(false);
 }
 
-function showAudioError(message) {
-  if (!dom.audioNote.hidden) return;
-  dom.audioNote.textContent = message;
-  dom.audioNote.hidden = false;
-  setWaveformLive(false);
-  setPlayIcon(false);
+function showAudioError() {
+  return;
 }
 
 function animateNeedleTo(freq) {
